@@ -1,0 +1,99 @@
+/* Custom styles for Sales Dashboard */
+
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #5cb85c;
+    --danger-color: #d9534f;
+    --warning-color: #f0ad4e;
+    --info-color: #5bc0de;
+    --light-bg: #f8f9fa;
+    --dark-text: #343a40;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: #3a7bd5;
+    border-color: #3a7bd5;
+}
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+.btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #c9302c;
+}
+
+/* Forms */
+.form-control {
+    border-radius: 0.25rem;
+    border-color: var(--border-color);
+}
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.25);
+}
+
+/* Tables */
+.table {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.table thead th {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Modals */
+.modal-content {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.modal-header {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-bottom: none;
+}
+.modal-title {
+    color: #fff;
+}
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Toast Notifications */
+.toast {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+}
+.toast-header {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    border-bottom: 1px solid var(--border-color);
+}
+.toast-body {
+    color: var(--dark-text);
+}
+.toast.bg-success {
+    background-color: var(--secondary-color) !important;
+}
+.toast.bg-danger {
+    background-color: var(--danger-color) !important;
+}

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Exclude the /api/ directory from rewriting
+RewriteRule ^api/ - [L]
+
+# Allow any files or directories that exist to be served directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite all other requests to index.php
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]

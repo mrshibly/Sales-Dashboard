@@ -1,0 +1,125 @@
+🧩 Sales Role-Based Access Control (RBAC) System — Bangladesh-Based Sales Organization
+📌 Project Overview
+This project implements a Role-Based Access Control (RBAC) system for a sales organization operating across Bangladesh. The system is designed to map each user to a geographic region (Division → District → Upazila → Territory), and assign permissions based on their sales hierarchy level.
+
+This ensures data privacy, operational clarity, and regional accountability for all users in the system.
+
+🔁 Sales Role Hierarchy
+Each role has a defined scope of access based on their position in the sales chain:
+
+scss
+Copy
+Edit
+HOM (Head of Marketing)
+└── NSM (National Sales Manager)
+    └── DSM (Divisional Sales Manager)
+        └── ASM (Area Sales Manager)
+            └── TSM (Territory Sales Manager)
+                └── SR (Sales Representative)
+🌍 Geographic Hierarchy (Bangladesh Structure)
+The system maps users and data geographically:
+
+pgsql
+Copy
+Edit
+Division (8 total)
+└── District (~64 total)
+    └── Upazila / Area (~495 total)
+        └── Territory (smaller segments under each Upazila)
+Each user is linked to a location level:
+
+Role	Assigned To
+SR	Territory (within an Upazila)
+TSM	Upazila
+ASM	District
+DSM	Division
+NSM	Country-wide
+HOM	Full system access
+
+🔐 Role-Based Access Breakdown
+✅ SR (Sales Representative)
+Customers & Orders: Can view/edit only their own.
+
+Products: View only.
+
+Targets: View only their own.
+
+Users: No access.
+
+Analytics/Leaderboard: View own performance & rank.
+
+Settings: Can change own profile.
+
+✅ TSM (Territory Sales Manager)
+Customers & Orders: Manage those within their Upazila.
+
+Products: View only.
+
+Targets: Assign/edit targets for their SRs.
+
+Users: Can view SRs under their Upazila.
+
+Analytics/Leaderboard: View territory performance and team rankings.
+
+Settings: Can edit own profile.
+
+✅ ASM (Area Sales Manager)
+Customers & Orders: Manage data within their District.
+
+Products: View only.
+
+Targets: Manage targets for all TSMs and SRs under their district.
+
+Users: View SRs and TSMs in the district.
+
+Analytics/Leaderboard: District-wide performance view.
+
+Settings: Own profile only.
+
+✅ DSM (Divisional Sales Manager)
+Customers & Orders: Access across their Division.
+
+Products: View only.
+
+Targets: Full control of target management for ASMs and below.
+
+Users: View all users in the division.
+
+Analytics/Leaderboard: Division-level reports.
+
+Settings: Edit profile only.
+
+✅ NSM (National Sales Manager)
+Customers & Orders: Nationwide view.
+
+Products: View only.
+
+Targets: Control all targets (nationwide).
+
+Users: View all users below NSM level.
+
+Analytics/Leaderboard: National overview.
+
+Settings: Edit profile and manage limited configurations.
+
+✅ HOM (Head of Marketing)
+Customers & Orders: Full access.
+
+Products: Full CRUD (create, read, update, delete).
+
+Targets: Create and assign nationwide and divisional targets.
+
+Users: View and manage all users.
+
+Analytics/Leaderboard: Full system-wide reports.
+
+Settings: Access and control over all system settings and configuration.
+
+🧠 Key Concepts for Implementation
+Users are tied to a location level in the geographic hierarchy.
+
+All CRUD permissions are cascaded downward from the top role to ensure hierarchical visibility and control.
+
+Region-based filtering is implemented to isolate what users can access.
+
+Targets, customers, orders, users and analytics are all scoped by role + location.
